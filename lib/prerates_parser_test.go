@@ -42,11 +42,11 @@ func TestParser(t *testing.T) {
     t.FailNow()
   }
 
-  if prerates[0] != (Prerate{delta: 3, rate252: 6.4, rate360: 0.0}) {
+  if prerates[0] != (ParsedPrerate{delta: 3, rate252: 6.4, rate360: 0.0}) {
     t.FailNow()
   }
 
-  if prerates[1] != (Prerate{delta: 6, rate252: 6.5, rate360: 6.09}) {
+  if prerates[1] != (ParsedPrerate{delta: 6, rate252: 6.5, rate360: 6.09}) {
     t.FailNow()
   }
 }

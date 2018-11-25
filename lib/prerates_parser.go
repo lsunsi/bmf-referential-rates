@@ -7,9 +7,9 @@ import (
   "strings"
 )
 
-// Prerate stores the delta days from today and two annualized
+// ParsedPrerate stores the delta days from today and two annualized
 // rates, one for work days and one for calendar days.
-type Prerate struct {
+type ParsedPrerate struct {
   delta   int
   rate252 float64
   rate360 float64
@@ -17,14 +17,14 @@ type Prerate struct {
 
 // Parse takes a reader containing an HTML page
 // and parses each row into the prerate struct.
-func Parse(r io.Reader) ([]Prerate, error) {
+func Parse(r io.Reader) ([]ParsedPrerate, error) {
   doc, err := goquery.NewDocumentFromReader(r)
 
   if err != nil {
     return nil, err
   }
 
-  prerates := []Prerate{}
+  prerates := []ParsedPrerate{}
   trs := doc.Find("#tb_principal1 tr:nth-child(n+3)")
 
   for i := range trs.Nodes {
@@ -47,7 +47,7 @@ func Parse(r io.Reader) ([]Prerate, error) {
       return nil, err
     }
 
-    prerates = append(prerates, Prerate{delta, rate252, rate360})
+    prerates = append(prerates, ParsedPrerate{delta, rate252, rate360})
   }
 
   return prerates, nil
