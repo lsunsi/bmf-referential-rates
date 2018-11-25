@@ -1,6 +1,6 @@
 FROM golang:1.11.2 as builder
 
-WORKDIR /go/src/brr/
+WORKDIR /go/src/bmf-referential-rates/
 COPY . .
 
 RUN go get ./...
