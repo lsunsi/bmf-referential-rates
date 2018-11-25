@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    build: .
+    depends_on:
+      - database
+  database:
+    image: 'postgres:11.1'
